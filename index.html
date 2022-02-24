@@ -5,10 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock, paper, scissors game</title>
-    <script src="/script.js"></script>
-    <link ref="stylessheet" href="/styles.css">
+    <script src="/script.js" defer></script>
+    <link rel="stylesheet" href="/styles.css">
+    <!--fonts, 'Press Start 2P' and 'VT323'-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
 </head>
 <body>
-    Hello
+    <div class="header">
+        <h1>Rock, paper, scissors</h1>
+    </div>
+    <div class="container">
+        <div class="left column"></div>
+        <div class="center">
+            <h2>Can you beat the machine in a friendly game of rock, paper, scissors?</h2>
+            <div class="score">
+                <h1 id="humanScore">0</h1>
+                <h1>vs.</h1>
+                <h1 id="machine">0</h1>
+            </div>
+            <div class="buttons">
+                <button id="rock">Rock</button>
+                <button id="paper">Paper</button>
+                <button id="scissors">Scissors</button>
+            </div>
+        </div>
+        <div class="right column"></div>
+    </div>
+    <div class="footer">
+        <p>This is the footer</p>
+    </div>
 </body>
 </html>

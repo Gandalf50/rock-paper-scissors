@@ -1,3 +1,29 @@
+let hscore = document.querySelector('#humanScore');
+let mscore = document.querySelector('#machine');
+let win = 0;
+let lose = 0;
+
+//buttons
+const rockbtn = document.querySelector('#rock');
+rockbtn.addEventListener('click',() => {
+    playRound("rock");
+    console.log(winner);
+});
+
+const paperbtn = document.querySelector('#paper');
+paperbtn.addEventListener('click',() => {
+    playRound("paper");
+    console.log(winner);
+});
+
+const scissorsbtn = document.querySelector('#scissors');
+scissorsbtn.addEventListener('click',() => {
+    playRound("scissors");
+    console.log(winner);
+});
+
+
+//functions
 function computerPlay () {
     const options = ["Rock", "Paper", "Scissors"];
     play = options[random()];
@@ -9,40 +35,54 @@ function random() {
     return n;
 }
 
-function playRound(playerSelection, computerSelection) {
-    let ps = playerSelection.toLowerCase();
-    let cs = computerSelection.toLowerCase();
+function playRound(ps) {
+    let cs = computerPlay().toLowerCase();
     switch(ps) {
         case "rock":
             if (cs == "rock") {
-                return winner = "Oh! That's a tie!";
+                winner = "Oh! That's a tie!";
             } else if (cs == "paper") {
-                return winner = "You lose, paper beats rock!";
+                winner = "You lose, paper beats rock!";
             } else {
-                return winner = "You win! Rock beats scissors!";
+                winner = "You win! Rock beats scissors!";
             }
             break;
         case "paper":
             if (cs == "rock") {
-                return winner = "You win! Paper beats rock!";
+                winner = "You win! Paper beats rock!";
             } else if (cs == "paper") {
-                return winner = "Oh! That's a tie!";
+                winner = "Oh! That's a tie!";
             } else {
-                return winner = "You lose, scissors beat paper!";
+                winner = "You lose, scissors beat paper!";
             }
             break;
             case "scissors":
             if (cs == "rock") {
-                return winner = "You lose, rock beats scissors!";
+                winner = "You lose, rock beats scissors!";
             } else if (cs == "paper") {
-                return winner = "You win! Scissors beat paper!";
+                winner = "You win! Scissors beat paper!";
             } else {
-                return winner = "Oh! That's a tie!";
+                winner = "Oh! That's a tie!";
             }
             break;
     }
+    if (winner.substring(0,7) == "You win") {
+        ++win
+        hscore.textContent = win.toString();
+    } else if (winner.substring(0,8) == "You lose") {
+        ++lose
+        mscore.textContent = lose.toString();
+    }
+    if (win == 5) {
+        setTimeout(() => alert("You win! Good game"),10);
+        location.reload();
+    } else if (lose == 5) {
+        setTimeout(() => alert("I win! I'm going to take over the world!"),10);
+        location.reload();
+    }
 }
 
+/*
 function game(playerSelection) {
     let win = 0;
     let lose = 0;
@@ -67,3 +107,4 @@ function game(playerSelection) {
         alert("Wow! The game ended in a tie!");
     }
 }
+*/
