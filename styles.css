@@ -33,7 +33,11 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;    
+    justify-content: space-around;   
+}
+
+h2 {
+    max-width: 600px;
 }
 
 .header, .footer {
@@ -41,18 +45,28 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.footer {
+    margin-bottom: 50px;
 }
 
 button {
-    min-width: 10em;
-    min-height: 10em;
+    width: 10em;
+    height: 10em;
     background-color: #000a00;
     border: solid #00FF00;
-    border-radius: 30%;
+    border-radius: 20px;
 }
 
 .buttons {
     display: flex;
     justify-content: space-between;
     gap: 30px;
+}
+
+.newGame {
+    height: 5em;
 }

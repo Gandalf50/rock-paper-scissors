@@ -1,25 +1,24 @@
 let hscore = document.querySelector('#humanScore');
 let mscore = document.querySelector('#machine');
+let restart = document.querySelector('.footer')
 let win = 0;
 let lose = 0;
+let endMessage = document.createElement('h2');
 
 //buttons
 const rockbtn = document.querySelector('#rock');
 rockbtn.addEventListener('click',() => {
     playRound("rock");
-    console.log(winner);
 });
 
 const paperbtn = document.querySelector('#paper');
 paperbtn.addEventListener('click',() => {
     playRound("paper");
-    console.log(winner);
 });
 
 const scissorsbtn = document.querySelector('#scissors');
 scissorsbtn.addEventListener('click',() => {
     playRound("scissors");
-    console.log(winner);
 });
 
 
@@ -37,74 +36,30 @@ function random() {
 
 function playRound(ps) {
     let cs = computerPlay().toLowerCase();
-    switch(ps) {
-        case "rock":
-            if (cs == "rock") {
-                winner = "Oh! That's a tie!";
-            } else if (cs == "paper") {
-                winner = "You lose, paper beats rock!";
-            } else {
-                winner = "You win! Rock beats scissors!";
-            }
-            break;
-        case "paper":
-            if (cs == "rock") {
-                winner = "You win! Paper beats rock!";
-            } else if (cs == "paper") {
-                winner = "Oh! That's a tie!";
-            } else {
-                winner = "You lose, scissors beat paper!";
-            }
-            break;
-            case "scissors":
-            if (cs == "rock") {
-                winner = "You lose, rock beats scissors!";
-            } else if (cs == "paper") {
-                winner = "You win! Scissors beat paper!";
-            } else {
-                winner = "Oh! That's a tie!";
-            }
-            break;
-    }
-    if (winner.substring(0,7) == "You win") {
-        ++win
-        hscore.textContent = win.toString();
-    } else if (winner.substring(0,8) == "You lose") {
-        ++lose
-        mscore.textContent = lose.toString();
-    }
-    if (win == 5) {
-        setTimeout(() => alert("You win! Good game"),10);
-        location.reload();
-    } else if (lose == 5) {
-        setTimeout(() => alert("I win! I'm going to take over the world!"),10);
-        location.reload();
+    if (win < 5 && lose < 5){
+        if (ps == "rock" && cs == "scissors" || ps == "paper" && cs == "rock" || ps == "scissors" && cs == "paper") /*all winning cases*/ {
+            win++;
+            hscore.textContent = win.toString();
+        } else if (ps == rock && cs == "paper" || ps == "paper" && cs == "scissors" || ps == "scissors" && cs == "rock") /*all losing cases*/ {
+            lose++;
+            mscore.textContent = lose.toString();
+        }
+        if (win == 5) {
+            endMessage.textContent = "You win! Congratulations!";
+        } else if (lose == 5) {
+            endMessage.textContent = "You lose! I'm going to take over the world!";
+        }
+        if (win == 5 || lose == 5) {
+            restart.appendChild(endMessage);
+            const newGameBtn = document.createElement('button');
+            newGameBtn.textContent = "Play again?";
+            newGameBtn.classList.add('newGame');
+            restart.appendChild(newGameBtn);
+            newGameBtn.addEventListener('click',() => {
+                location.reload();
+            })
+        } else {
+            return;
+        }
     }
 }
-
-/*
-function game(playerSelection) {
-    let win = 0;
-    let lose = 0;
-    for (i=0 ; i<5 ; i++) {
-        let playerSelection = prompt("Select your play:");
-        if (playerSelection == null) {
-            let playerSelection = prompt("Select your play:");
-        }
-        playRound(playerSelection,computerPlay());
-        if (winner.substring(0,7) == "You win") {
-            win++
-        } else if (winner.substring(0,8) == "You lose") {
-            lose++
-        }
-        alert(winner);
-    }
-    if (win > lose) {
-        alert("You win the game!");
-    } else if (lose > win) {
-        alert("Game over, you've lost the game");
-    } else {
-        alert("Wow! The game ended in a tie!");
-    }
-}
-*/
