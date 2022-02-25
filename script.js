@@ -1,6 +1,8 @@
 let hscore = document.querySelector('#humanScore');
 let mscore = document.querySelector('#machine');
 let restart = document.querySelector('.footer')
+let round = document.querySelector('#roundCount');
+let roundNumber = 0;
 let win = 0;
 let lose = 0;
 let endMessage = document.createElement('h2');
@@ -38,11 +40,21 @@ function playRound(ps) {
     let cs = computerPlay().toLowerCase();
     if (win < 5 && lose < 5){
         if (ps == "rock" && cs == "scissors" || ps == "paper" && cs == "rock" || ps == "scissors" && cs == "paper") /*all winning cases*/ {
+            console.log("win");
             win++;
             hscore.textContent = win.toString();
+            roundNumber++;
+            round.textContent = "Round: " + roundNumber.toString();
         } else if (ps == rock && cs == "paper" || ps == "paper" && cs == "scissors" || ps == "scissors" && cs == "rock") /*all losing cases*/ {
+            console.log("lose");
             lose++;
             mscore.textContent = lose.toString();
+            roundNumber++;
+            round.textContent = "Round: " + roundNumber.toString();
+        } else if (ps == cs) {
+            console.log("tie");
+            roundNumber++;
+            round.textContent = "Round: " + roundNumber.toString();
         }
         if (win == 5) {
             endMessage.textContent = "You win! Congratulations!";
