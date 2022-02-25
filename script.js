@@ -33,6 +33,7 @@ function computerPlay () {
 
 function random() {
     n = Math.floor(Math.random()*3);
+    console.log(n);
     return n;
 }
 
@@ -40,19 +41,16 @@ function playRound(ps) {
     let cs = computerPlay().toLowerCase();
     if (win < 5 && lose < 5){
         if (ps == "rock" && cs == "scissors" || ps == "paper" && cs == "rock" || ps == "scissors" && cs == "paper") /*all winning cases*/ {
-            console.log("win");
             win++;
             hscore.textContent = win.toString();
             roundNumber++;
             round.textContent = "Round: " + roundNumber.toString();
-        } else if (ps == rock && cs == "paper" || ps == "paper" && cs == "scissors" || ps == "scissors" && cs == "rock") /*all losing cases*/ {
-            console.log("lose");
+        } else if (ps == "rock" && cs == "paper" || ps == "paper" && cs == "scissors" || ps == "scissors" && cs == "rock") /*all losing cases*/ {
             lose++;
             mscore.textContent = lose.toString();
             roundNumber++;
             round.textContent = "Round: " + roundNumber.toString();
         } else if (ps == cs) {
-            console.log("tie");
             roundNumber++;
             round.textContent = "Round: " + roundNumber.toString();
         }
